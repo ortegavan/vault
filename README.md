@@ -187,7 +187,7 @@ vault operator init
 ```
 Salvar as keys e o token apresentados
 
-## Habilitar o server pra criptografia
+## Habilitar o server pra ser usado
 
 ```
 vault operator unseal
@@ -201,18 +201,39 @@ vault login s.KkNJYWF5g0pomcCLEmDdOVCW
 ```
 Usar o token fornecido ao iniciar o server
 
+## Habilitar o engine de chave/valor
+
+```
+vault secrets enable -version=1 kv
+
+```
+
 ## Gerenciar segredos 
 
 a) Cria um segredo 
 
 ```
-vault write cubbyhole/gatos melhorgato=baunilhinha
+vault kv put kv/my-secret my-value=s3cr3t
 ```
 
 b) Lê um segredo 
 
 ```
-vault read cubbyhole/gatos
+vault kv get kv/my-secret
 ```
 
 Para saber como ler segredos via API consulte o exemplo em .NET no projeto Teste ou em JavaScript na index.html
+
+## Criar uma política só de leitura
+
+```
+ vault policy write my-policy policy.hcl
+```
+
+Ver arquivo policy.hcl de exemplo
+
+## Gerar um token com esta política
+
+```
+vault token create -policy=my-policy 
+```

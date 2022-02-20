@@ -14,25 +14,25 @@
 
         async function buscarSegredo() 
         {
-            let response = await fetch("http://127.0.0.1:8200/v1/cubbyhole/gatos", {
+            let response = await fetch("http://127.0.0.1:8200/v1/kv/my-secret", {
                 headers: {
                     "Content-Type": "application/json",
-                    "X-Vault-Token": "s.kZPGNhm5evk1oDMV2wSIlaw5"
+                    "X-Vault-Token": "s.sZlgbICx7QCdfT87GZzE3VGU"
                 }
             });
-            let gatos = await response.json();
+            let secret = await response.json();
 
-            // console.log(gatos.data.melhorgato);
+            console.log(secret);
 
-            return gatos;
+            return secret;
         }
 
         async function exibirSegredo()
         {
-            let gatos = await buscarSegredo();
+            let segredo = await buscarSegredo();
             let div = document.querySelector("#response");
 
-            div.innerHTML = gatos.data.melhorgato;
+            div.innerHTML = segredo.data["my-value"];
         }
 
     </script>
