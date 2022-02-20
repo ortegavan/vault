@@ -205,7 +205,6 @@ Usar o token fornecido ao iniciar o server
 
 ```
 vault secrets enable -version=1 kv
-
 ```
 
 ## Gerenciar segredos 
